@@ -3,7 +3,7 @@ module.exports = {
   db: {
     database: process.env.DB_NAME || 'clientportal',
     user: process.env.DB_USER || 'clientportal',
-    password: process.env.DB_pass || 'clientportal',
+    password: process.env.DB_PASS || 'clientportal',
     options: {
       dialect: process.env.DIALECT || 'sqlite',
       host: process.env.HOST || 'localhost',

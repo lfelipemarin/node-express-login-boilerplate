@@ -18,35 +18,35 @@
             <v-list-tile-title>Settings</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile @click="">
-          <v-list-tile-action>
-            <v-icon>settings</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Log In</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile @click="">
-          <v-list-tile-action>
-            <v-icon>settings</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Register</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+        <div v-if="!$store.state.isUserLoggedIn">
+          <v-list-tile @click="navigateTo({name:'Login'})">
+            <v-list-tile-action>
+              <v-icon>settings</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>Log In</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-list-tile @click="navigateTo({name:'Register'})">
+            <v-list-tile-action>
+              <v-icon>settings</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>Register</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </div>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar app fixed clipped-left>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title @click="navigateTo({name:'Root'})">Client Portal</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
+      <v-toolbar-items v-if="!$store.state.isUserLoggedIn">
         <v-btn flat dark @click="navigateTo({name:'Register'})">Register</v-btn>
       </v-toolbar-items>
-      <v-toolbar-items>
-        <v-btn flat dark>
-          Log In
-        </v-btn>
+      <v-toolbar-items v-if="!$store.state.isUserLoggedIn">
+        <v-btn flat dark @click="navigateTo({name:'Login'})">Log In</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
@@ -55,7 +55,7 @@
       </v-container>
     </v-content>
     <v-footer app fixed>
-      <span>&copy; 2017</span>
+      <span>&copy; 2017 Demand Frontier</span>
     </v-footer>
   </v-app>
 </template>
@@ -88,7 +88,7 @@ export default {
   cursor: pointer;
 }
 
-.toolbar__title:hover{
-  color: #1976D2;
+.toolbar__title:hover {
+  color: #1976d2;
 }
 </style>

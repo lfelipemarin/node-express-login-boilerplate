@@ -36,6 +36,14 @@
             </v-list-tile-content>
           </v-list-tile>
         </div>
+        <v-list-tile v-if="$store.state.isUserLoggedIn" @click="logout">
+          <v-list-tile-action>
+            <v-icon>settings</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Log Out</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar app fixed clipped-left>
@@ -47,6 +55,9 @@
       </v-toolbar-items>
       <v-toolbar-items v-if="!$store.state.isUserLoggedIn">
         <v-btn flat dark @click="navigateTo({name:'Login'})">Log In</v-btn>
+      </v-toolbar-items>
+      <v-toolbar-items v-if="$store.state.isUserLoggedIn">
+        <v-btn flat dark @click="logout">Log Out</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
@@ -70,6 +81,13 @@ export default {
   methods: {
     navigateTo (route) {
       this.$router.push(route)
+    },
+    logout () {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+      this.$router.push({
+        name: 'Root'
+      })
     }
   }
 }

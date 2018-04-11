@@ -15,7 +15,6 @@
       </div>
     </v-flex>
   </v-layout>
-
 </template>
 
 <script>

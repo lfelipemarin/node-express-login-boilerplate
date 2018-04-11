@@ -4,11 +4,17 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  strict: true,
+  strict: false,
   state: {
     token: null,
     user: null,
-    isUserLoggedIn: false
+    isUserLoggedIn: false,
+    sideBarOpen: false
+  },
+  getters: {
+    g_sideBarOpen (state) {
+      return state.sideBarOpen
+    }
   },
   mutations: {
     setToken (state, token) {
@@ -21,6 +27,9 @@ export default new Vuex.Store({
     },
     setUser (state, user) {
       state.user = user
+    },
+    toggleSideBar (state) {
+      state.sideBarOpen = !state.sideBarOpen
     }
   },
   actions: {

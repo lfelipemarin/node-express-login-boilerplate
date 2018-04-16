@@ -7,10 +7,18 @@ import Vuetify from 'vuetify'
 import { sync } from 'vuex-router-sync'
 import 'vuetify/dist/vuetify.min.css'
 import store from '@/store/store'
+import VueMq from 'vue-mq'
 
 Vue.config.productionTip = false
 router.mode = 'history'
 Vue.use(Vuetify)
+Vue.use(VueMq, {
+  breakpoints: { // default breakpoints - customize this
+    sm: 450,
+    md: 1250,
+    lg: Infinity
+  }
+})
 
 sync(store, router)
 

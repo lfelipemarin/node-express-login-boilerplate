@@ -1,5 +1,5 @@
 // define a mixin object
-export const routing = {
+export const mixin = {
   methods: {
     navigateTo (route) {
       this.$router.push(route)

@@ -9,7 +9,7 @@ export default new Vuex.Store({
     token: null,
     user: null,
     isUserLoggedIn: false,
-    sideBarOpen: false
+    sideBarOpen: true
   },
   getters: {
     g_sideBarOpen (state) {

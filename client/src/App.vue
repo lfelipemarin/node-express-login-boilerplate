@@ -1,12 +1,13 @@
 <template>
   <v-app id="app" dark>
     <page-header></page-header>
-    <side-bar v-if="$store.state.isUserLoggedIn"></side-bar>
+    <side-bar></side-bar>
     <v-content>
       <v-container fluid fill-height>
         <router-view/>
       </v-container>
     </v-content>
+    <mobile-nav/>
     <v-footer app fixed>
       <span>&copy; 2017 Demand Frontier</span>
     </v-footer>
@@ -16,14 +17,16 @@
 <script>
 import PageHeader from '@/components/Header.vue'
 import SideBar from '@/components/Sidebar.vue'
+import MobileNav from '@/components/MobileNav.vue'
 export default {
   name: 'App',
   components: {
     PageHeader,
-    SideBar
+    SideBar,
+    MobileNav
   },
   data: () => ({
-    drawer: null
+
   }),
   methods: {
     // navigateTo (route) {

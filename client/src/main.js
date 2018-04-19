@@ -14,7 +14,7 @@ router.mode = 'history'
 Vue.use(Vuetify)
 Vue.use(VueMq, {
   breakpoints: { // default breakpoints - customize this
-    sm: 450,
+    sm: 576,
     md: 1250,
     lg: Infinity
   }

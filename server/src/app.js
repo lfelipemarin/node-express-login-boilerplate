@@ -7,12 +7,13 @@ const config = require('./config/config')
 
 const app = express()
 app.use(morgan('combined'))
-app.use(bodyParser.json())
+app.use(bodyParser.json({ limit: '50mb' }))
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }))
 app.use(cors())
 
 require('./routes')(app)
 
-sequelize.sync()
+sequelize.sync({ force: true })
   .then(() => {
     app.listen(config.port)
     console.log(`Server started on port ${config.port}`)

@@ -7,10 +7,10 @@
         <router-view/>
       </v-container>
     </v-content>
-    <mobile-nav/>
     <v-footer app fixed>
       <span>&copy; 2017 Demand Frontier</span>
     </v-footer>
+    <mobile-nav v-if="$mq === 'sm'" />
   </v-app>
 </template>
 
@@ -59,4 +59,16 @@ export default {
 .toolbar__title:hover {
   color: #1976d2;
 }
+
+.footer {
+  margin-bottom: 0;
+}
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  .footer {
+    margin-bottom: 56px;
+  }
+}
+
 </style>

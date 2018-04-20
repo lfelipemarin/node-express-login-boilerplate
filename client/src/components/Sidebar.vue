@@ -1,13 +1,13 @@
 <template>
-  <v-navigation-drawer clipped fixed :mini-variant.sync="mini" v-model="$store.state.sideBarOpen" app>
-    <v-toolbar flat class="transparent">
+  <v-navigation-drawer clipped fixed disable-route-watcher :mini-variant.sync="mini" v-model="$store.state.sideBarOpen" app>
+    <v-toolbar flat class="transparent" v-if="$store.state.isUserLoggedIn">
       <v-list class="pa-0">
         <v-list-tile avatar>
           <v-list-tile-avatar>
-            <img src="https://randomuser.me/api/portraits/men/85.jpg">
+            <img :src="$store.state.user.avatar">
           </v-list-tile-avatar>
           <v-list-tile-content>
-            <v-list-tile-title>John Leider</v-list-tile-title>
+            <v-list-tile-title>{{fullName}}</v-list-tile-title>
           </v-list-tile-content>
           <v-list-tile-action>
             <v-btn icon @click.native.stop="mini = !mini">
@@ -88,6 +88,9 @@ export default {
   computed: {
     showSideBar () {
       return this.$store.getters.g_sideBarOpen
+    },
+    fullName () {
+      return this.$store.state.user.firstName + ' ' + this.$store.state.user.lastName
     }
   }
 }

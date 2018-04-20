@@ -18,7 +18,7 @@ module.exports = {
     try {
       console.log('file', req.file)
       const host = req.hostname
-      const path = 'images/logos'
+      const path = 'images/avatars'
       const filePath = req.protocol + "://" + host + ':' + config.port + '/' + path + '/' + req.file.filename
 
       console.log('bodyAC', req.body)

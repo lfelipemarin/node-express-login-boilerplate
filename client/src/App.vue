@@ -1,7 +1,7 @@
 <template>
   <v-app id="app" dark>
     <page-header></page-header>
-    <side-bar></side-bar>
+    <side-bar v-if="$store.state.isUserLoggedIn"></side-bar>
     <v-content>
       <v-container fluid fill-height>
         <router-view/>

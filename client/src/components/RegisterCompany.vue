@@ -6,11 +6,7 @@
           <v-toolbar-title>Register</v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
-          <v-text-field label="First Name" v-model="firstName"></v-text-field>
-          <v-text-field label="Last Name" v-model="lastName"></v-text-field>
-          <v-text-field label="Email" v-model="email"></v-text-field>
-          <v-text-field label="Password" type="password" v-model="password"></v-text-field>
-          <v-text-field label="Company" type="text" v-model="company"></v-text-field>
+          <v-text-field label="Company Name" v-model="name"></v-text-field>
           <v-text-field label="Select Avatar" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
           <input type="file" style="display: none" ref="image" accept="image/*" @change="onFilePicked">
           <div class="error" v-html="error"></div>
@@ -23,19 +19,14 @@
 </template>
 
 <script>
-import AuthenticationService from '@/services/AuthenticationService'
+import CompaniesService from '@/services/CompaniesService'
 // import UploadService from '@/services/UploadService'
 export default {
-  name: 'Register',
+  name: 'RegisterCompany',
   data () {
     return {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      company: '',
-      role: 'client',
-      avatar: '',
+      name: '',
+      logo: '',
       imageName: '',
       imageUrl: '',
       imageFile: '',
@@ -69,19 +60,14 @@ export default {
     async register () {
       try {
         var formData = new FormData()
-        formData.append('firstName', this.firstName)
-        formData.append('lastName', this.lastName)
-        formData.append('email', this.email)
-        formData.append('password', this.password)
-        formData.append('company', this.company)
-        formData.append('role', this.role)
-        formData.append('avatar', this.imageFile)
+        formData.append('name', this.name)
+        formData.append('logo', this.imageFile)
         // const responseAvatar = await UploadService.uploadAvatar()
-        const response = await AuthenticationService.register(formData)
-        this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
+        const response = await CompaniesService.create(formData)
+        console.log(response)
       } catch (error) {
-        this.error = error.response.data.error
+        this.error = error
+        // this.error = error.response.data.error
       }
     }
   }

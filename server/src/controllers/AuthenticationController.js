@@ -12,40 +12,14 @@ function jwtSignUser (user) {
 }
 var host = ''
 var filePath = ''
-/* Multer file upload setup*/
-// const multer = require('multer')
-// var storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, '../uploads/')
-//   },
-//   filename: function (req, file, cb) {
-//     console.log("file", file)
-//     cb(null, Date.now() + '-' + file.originalname)
-//   }
-// })
-
-// const upload = multer({
-//   storage: storage,
-//   fileFilter: function (req, file, cb) {
-//     var filetypes = /jpeg|jpg|png|docx/
-//     var mimetype = filetypes.test(file.mimetype)
-//     var extname = filetypes.test(path.extname(file.originalname).toLowerCase())
-//     if (mimetype && extname) {
-//       return cb(null, true)
-//     }
-//     cb("Error: File upload only supports the following filetypes - " + filetypes)
-//   }
-// }).single('avatar')
 
 module.exports = {
   async register (req, res) {
     try {
-      var host = ''
-      var filePath = ''
-
       console.log('file', req.file)
-      host = req.hostname
-      filePath = req.protocol + "://" + host + '/' + req.file.path
+      const host = req.hostname
+      const path = 'images/logos'
+      const filePath = req.protocol + "://" + host + ':' + config.port + '/' + path + '/' + req.file.filename
 
       console.log('bodyAC', req.body)
 
@@ -56,6 +30,8 @@ module.exports = {
       })
 
       const user = await User.create({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         email: req.body.email,
         password: req.body.password,
         role: req.body.role || 'client',

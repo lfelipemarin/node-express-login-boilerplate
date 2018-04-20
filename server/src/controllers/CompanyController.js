@@ -1,10 +1,20 @@
 const { Company } = require('../models')
 const { User } = require('../models')
+const config = require('../config/config')
 
 module.exports = {
   async registerCompany (req, res) {
     try {
-      const company = await Company.create(req.body)
+      console.log('file', req.file)
+      // ToDo implement file path
+      const host = req.hostname
+      const path = 'images/logos'
+      const filePath = req.protocol + "://" + host + ':' + config.port + '/' + path + '/' + req.file.filename
+
+      const company = await Company.create({
+        name: req.body.name,
+        logo: filePath
+      })
       const companyJson = company.toJSON()
       res.send({
         company: companyJson

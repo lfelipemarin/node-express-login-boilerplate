@@ -7,6 +7,9 @@
       <v-btn flat dark @click="navigateTo({name:'Register'})">Register</v-btn>
     </v-toolbar-items>
     <v-toolbar-items v-if="!$store.state.isUserLoggedIn">
+      <v-btn flat dark @click="navigateTo({name:'RegisterCompany'})">Register Company</v-btn>
+    </v-toolbar-items>
+    <v-toolbar-items v-if="!$store.state.isUserLoggedIn">
       <v-btn flat dark @click="navigateTo({name:'Login'})">Log In</v-btn>
     </v-toolbar-items>
     <v-toolbar-items v-if="$store.state.isUserLoggedIn">

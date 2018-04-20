@@ -11,11 +11,11 @@ app.use(morgan('combined'))
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }))
 app.use(cors())
-app.use('/avatars', express.static(__dirname + '/uploads'))
+app.use(express.static(path.join(__dirname, 'public')))
 
 require('./routes')(app)
 
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
   .then(() => {
     app.listen(config.port)
     console.log(`Server started on port ${config.port}`)

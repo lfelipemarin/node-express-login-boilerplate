@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Register from '@/components/Register'
+import RegisterCompany from '@/components/RegisterCompany'
 import Dashboard from '@/components/Dashboard'
 import Login from '@/components/Login'
 import Settings from '@/components/Settings'
@@ -15,6 +16,11 @@ export default new Router({
       path: '/',
       name: 'Root',
       component: HelloWorld
+    },
+    {
+      path: '/register-company',
+      name: 'RegisterCompany',
+      component: RegisterCompany
     },
     {
       path: '/register',

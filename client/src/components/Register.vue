@@ -80,6 +80,7 @@ export default {
         const response = await AuthenticationService.register(formData)
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$store.dispatch('setCompany', response.data.company)
       } catch (error) {
         this.error = error.response.data.error
       }

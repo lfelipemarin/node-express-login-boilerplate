@@ -1,13 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   strict: false,
+  plugins: [
+    createPersistedState()
+  ],
   state: {
     token: null,
     user: null,
+    company: null,
     isUserLoggedIn: false,
     sideBarOpen: true
   },
@@ -28,6 +33,9 @@ export default new Vuex.Store({
     setUser (state, user) {
       state.user = user
     },
+    setCompany (state, company) {
+      state.company = company
+    },
     toggleSideBar (state) {
       state.sideBarOpen = !state.sideBarOpen
     }
@@ -38,6 +46,9 @@ export default new Vuex.Store({
     },
     setUser ({ commit }, user) {
       commit('setUser', user)
+    },
+    setCompany ({ commit }, company) {
+      commit('setCompany', company)
     }
   }
 })

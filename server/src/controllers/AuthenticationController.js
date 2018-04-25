@@ -39,8 +39,10 @@ module.exports = {
         avatar: filePath || ''
       })
       const userJson = user.toJSON()
+      const companyJson = company.toJSON()
       res.send({
         user: userJson,
+        company: companyJson,
         token: jwtSignUser(userJson)
       })
     } catch (err) {
@@ -58,7 +60,20 @@ module.exports = {
           email: email
         }
       })
+
       if (!user) {
+        return res.status(403).send({
+          error: 'The login information was incorrect'
+        })
+      }
+
+      const company = await Company.findOne({
+        where: {
+          id: user.CompanyId
+        }
+      })
+
+      if (!company) {
         return res.status(403).send({
           error: 'The login information was incorrect'
         })
@@ -72,8 +87,10 @@ module.exports = {
       }
 
       const userJson = user.toJSON()
+      const companyJson = company.toJSON()
       res.send({
         user: userJson,
+        company: companyJson,
         token: jwtSignUser(userJson)
       })
     } catch (err) {

@@ -34,27 +34,9 @@
           <v-list-tile-title>Settings</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
-      <div v-if="!$store.state.isUserLoggedIn">
-        <v-list-tile @click="navigateTo({name:'Login'})">
-          <v-list-tile-action>
-            <v-icon>perm_identity</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Log In</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile @click="navigateTo({name:'Register'})">
-          <v-list-tile-action>
-            <v-icon>assignment</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Register</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </div>
       <v-list-tile v-if="$store.state.isUserLoggedIn" @click="logout">
         <v-list-tile-action>
-          <v-icon>settings</v-icon>
+          <v-icon>power_settings_new</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>Log Out</v-list-tile-title>

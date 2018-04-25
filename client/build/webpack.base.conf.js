@@ -38,6 +38,12 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+  externals: {
+    'jquery': 'jQuery',
+    'lodash': '_',
+    'amcharts': 'AmCharts',
+    'moment': 'moment',
+  },
   module: {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),

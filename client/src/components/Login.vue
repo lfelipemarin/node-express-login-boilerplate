@@ -39,6 +39,7 @@ export default {
         console.log(response)
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$store.dispatch('setCompany', response.data.company)
         this.$router.push({
           name: 'Dashboard'
         })

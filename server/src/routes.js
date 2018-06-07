@@ -27,7 +27,7 @@ const uploadAvatar = multerAvatars({
     if (mimetype && extname) {
       return cb(null, true)
     }
-    cb('Error: File upload only supports the following filetypes -' + filetypes)
+    cb(new Error('Error: File upload only supports the following filetypes -' + filetypes))
   }
 }).single('avatar')
 
@@ -53,7 +53,7 @@ const uploadLogo = multerLogos({
     if (mimetype && extname) {
       return cb(null, true)
     }
-    cb('Error: File upload only supports the following filetypes -' + filetypes)
+    cb(new Error('Error: File upload only supports the following filetypes -' + filetypes))
   }
 }).single('logo')
 
